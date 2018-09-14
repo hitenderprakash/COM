@@ -17,7 +17,7 @@ interface IComponent : IUnknown{
 	virtual double __stdcall add(double num1, double num2) = 0;
 	virtual double __stdcall subtract(double num1, double num2) = 0;
 	virtual double __stdcall multiply(double num1, double num2) = 0;
-	virtual double __stdcall devide(double num1, double num2) = 0;
+	virtual double __stdcall divide(double num1, double num2) = 0;
 	
 };
 
@@ -33,7 +33,7 @@ class CComponent: public IComponent {
 	
 	public:
 	//constructor & destructor
-	CComponent(){};
+	CComponent();
 	~CComponent(){};
 	//methods inherited from IUnknown 
 	virtual HRESULT __stdcall QueryInterface(const IID& iid,void** ppv); 
@@ -44,5 +44,5 @@ class CComponent: public IComponent {
 	virtual double __stdcall add(double num1, double num2);
 	virtual double __stdcall subtract(double num1, double num2);
 	virtual double __stdcall multiply(double num1, double num2);
-	virtual double __stdcall devide(double num1, double num2);
+	virtual double __stdcall divide(double num1, double num2);
 };

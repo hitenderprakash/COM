@@ -6,6 +6,12 @@
 
 //implementation of CComponent methods 
 
+//init m_cRef in constructor 
+CComponent::CComponent(){
+	m_cRef = 0;
+}
+
+
 ULONG __stdcall CComponent::AddRef(){
 	return InterlockedIncrement(&m_cRef);
 }
@@ -42,7 +48,7 @@ double __stdcall CComponent::subtract(double num1, double num2){
 double __stdcall CComponent::multiply(double num1, double num2){
 	return (num1 * num2);
 }
-double __stdcall CComponent::devide(double num1, double num2){
+double __stdcall CComponent::divide(double num1, double num2){
 	if(num2 == 0.0){
 		return 1.79769e+308;
 	}
@@ -57,6 +63,7 @@ int main(){
 	IComponent* pIComponent=NULL;
 	pIUnknown->QueryInterface(IID_IComponent,(void**)&pIComponent);
 	std::cout<<"\nSum of 9 and 4 is: "<< pIComponent->add(9,4);
+	std::cout<<"\ndifference of 9 and 4 is: "<< pIComponent->subtract(9,4);
 	pIComponent->Release();
 	return 0;	
 }
