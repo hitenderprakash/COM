@@ -1,0 +1,10 @@
+;componentDef.def file for creating the CComponent.dll 
+;CComponent module-definition file
+;LIBRARY CComponent.dll 
+;Exported function: CreateCComponentInstance
+
+;======================================================
+DESCRIPTION 'CComponents windows dynamik library'
+; Explicit exports can go here 
+EXPORTS CreateCComponentInstance @1 PRIVATE
+;======================================================

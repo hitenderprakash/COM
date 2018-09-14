@@ -1,7 +1,7 @@
 //Hitender Prakash
 //this project is only for learning about using and building COM objects
 //sample 
-#include "IComponent.h"
+#include "IComponentInterface.h"
 
 
 //implementation of CComponent methods 
@@ -55,17 +55,10 @@ double __stdcall CComponent::divide(double num1, double num2){
 	return (num1 / num2);
 }
 
-
-//===================== main cpp file: driver code ===========================================
-
-int main(){
-	IUnknown* pIUnknown = new CComponent;
-	IComponent* pIComponent=NULL;
-	pIUnknown->QueryInterface(IID_IComponent,(void**)&pIComponent);
-	std::cout<<"\nSum of 9 and 4 is: "<< pIComponent->add(9,4);
-	std::cout<<"\ndifference of 9 and 4 is: "<< pIComponent->subtract(9,4);
-	pIComponent->Release();
-	return 0;	
+//create Instance function which needs to be exported in the dll.
+extern "C" IUnknown* CreateCComponentInstance(){
+	IUnknown* pIUnknown = static_cast<IComponent*>(new CComponent);
+	return pIUnknown;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
