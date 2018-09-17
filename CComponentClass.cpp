@@ -17,7 +17,11 @@ ULONG __stdcall CComponent::AddRef(){
 }
 
 ULONG __stdcall CComponent::Release(){
-	return InterlockedIncrement(&m_cRef);
+	long refCount = InterlockedDecrement(&m_cRef);
+	if(refCount ==0){
+		delete this;
+	}
+	return refCount;
 }
 
 HRESULT __stdcall CComponent::QueryInterface(const IID& iid,void** ppv){
